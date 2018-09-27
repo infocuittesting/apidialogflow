@@ -143,7 +143,7 @@ def makeWebhookResult(json_data):
        #  speech = "Appointment is confirmed! Your Token Number: " + res.get('Token') + ". Appx Wait Time: " + str(hour)+ " hr(s) " + str(minit) + " min(s) "  
     '''
 
-    speech = "Great! Your booking has been confirmed and Your confirmation Number: " + res.get('confirmation_number') + "
+    speech = "Great! Your booking has been confirmed and Your confirmation Number: " + res.get('confirmation_number') + ""
     print("Response:")
     print(speech)
     #sys.stdout.flush()
