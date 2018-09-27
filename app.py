@@ -36,24 +36,24 @@ from flask import make_response
 app = Flask(__name__)
 
 
-@app.route('/webhook', methods=['POST'])
+@app.route('/webhookhotel', methods=['POST'])
 def webhook():
     req = request.get_json(silent=True, force=True)
-
+    print(req)
     print("Request:")
     print(json.dumps(req, indent=4))
     sys.stdout.flush()
     res = processRequest(req)
 
     res = json.dumps(res, indent=4)
-    # print(res)
+    #print(res)
     r = make_response(res)
     r.headers['Content-Type'] = 'application/json'
     return r
 
 
 def processRequest(req):
-    if req.get("result").get("action") != "bookappt":    
+    if req.get("result").get("action") != "bookhotel":    
         return {}
     
     result = req.get("result")
@@ -62,12 +62,11 @@ def processRequest(req):
     arrival = arrival.strftime("%Y-%m-%d")
     departure = parameters.get("departure")
     departure = departure.strftime("%Y-%m-%d")                
-    adult = parameters.get("adult")
-    child = parameters.get("child")
+    adult = str(parameters.get("adult"))
+    child = str(parameters.get("child"))
     roomtype = parameters.get("roomtype")
     mobile = parameters.get("mobile")
-    countrycode = parameters.get("countrycode")
-    channel = "whatsapp"
+    countrycode = str(parameters.get("countrycode"))
     pickup = parameters.get("pickup")
     modification = "No"
     
@@ -80,9 +79,9 @@ def processRequest(req):
     data['roomtype'] = roomtype
     data['mobile'] = mobile
     data['countrycode'] = countrycode
-    data['channel'] = channel
+    data['channel'] = "whatsapp"
     data['pickup'] = pickup
-    data['modification'] = modification
+    data['modification'] = "no"
     json_data = json.dumps(data)
     
     print("Request Parsed,Success...")
@@ -164,4 +163,4 @@ if __name__ == '__main__':
 
     print("Starting app on port %d" % port)
 
-    app.run(debug=False, port=port, host='0.0.0.0')
+    app.run(debug=False, port=port, host='192.168.1.11')
