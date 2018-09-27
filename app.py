@@ -62,11 +62,11 @@ def processRequest(req):
     arrival = arrival.strftime("%Y-%m-%d")
     departure = parameters.get("departure")
     departure = departure.strftime("%Y-%m-%d")                
-    adult = parameters.get("adult")
-    child = parameters.get("child")
+    adult = str(parameters.get("adult"))
+    child = str(parameters.get("child"))
     roomtype = parameters.get("roomtype")
     mobile = parameters.get("mobile")
-    countrycode = parameters.get("countrycode")
+    countrycode = str(parameters.get("countrycode"))
     channel = "whatsapp"
     pickup = parameters.get("pickup")
     modification = "No"
