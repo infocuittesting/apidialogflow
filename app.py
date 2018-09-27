@@ -53,7 +53,7 @@ def webhook():
 
 
 def processRequest(req):
-    if req.get("result").get("action") != "bookhotel":    
+    if req.get("result").get("action") != "bookappt":    
         return {}
     
     result = req.get("result")
@@ -62,11 +62,11 @@ def processRequest(req):
     arrival = arrival.strftime("%Y-%m-%d")
     departure = parameters.get("departure")
     departure = departure.strftime("%Y-%m-%d")                
-    adult = str(parameters.get("adult"))
-    child = str(parameters.get("child"))
+    adult = parameters.get("adult")
+    child = parameters.get("child")
     roomtype = parameters.get("roomtype")
     mobile = parameters.get("mobile")
-    countrycode = str(parameters.get("countrycode"))
+    countrycode = parameters.get("countrycode")
     channel = "whatsapp"
     pickup = parameters.get("pickup")
     modification = "No"
