@@ -60,7 +60,7 @@ def processRequest(req):
     parameters = result.get("parameters")
     arrival = parameters.get("arrival")
     arrival = arrival.strftime("%Y-%m-%d")
-    departure = parameters.get("departure
+    departure = parameters.get("departure")
     departure = departure.strftime("%Y-%m-%d")                
     adult = parameters.get("adult")
     child = parameters.get("child")
