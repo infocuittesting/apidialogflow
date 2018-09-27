@@ -59,7 +59,9 @@ def processRequest(req):
     result = req.get("result")
     parameters = result.get("parameters")
     arrival = parameters.get("arrival")
-    departure = parameters.get("departure")
+    arrival = arrival.strftime("%Y-%m-%d")
+    departure = parameters.get("departure
+    departure = departure.strftime("%Y-%m-%d")                
     adult = parameters.get("adult")
     child = parameters.get("child")
     roomtype = parameters.get("roomtype")
