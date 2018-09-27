@@ -39,21 +39,21 @@ app = Flask(__name__)
 @app.route('/webhook', methods=['POST'])
 def webhook():
     req = request.get_json(silent=True, force=True)
-    print(req)
+
     print("Request:")
     print(json.dumps(req, indent=4))
     sys.stdout.flush()
     res = processRequest(req)
 
     res = json.dumps(res, indent=4)
-    #print(res)
+    # print(res)
     r = make_response(res)
     r.headers['Content-Type'] = 'application/json'
     return r
 
 
 def processRequest(req):
-    if req.get("result").get("action") != "bookhotel":    
+    if req.get("result").get("action") != "bookappt":    
         return {}
     
     result = req.get("result")
@@ -67,6 +67,7 @@ def processRequest(req):
     roomtype = parameters.get("roomtype")
     mobile = parameters.get("mobile")
     countrycode = str(parameters.get("countrycode"))
+    channel = "whatsapp"
     pickup = parameters.get("pickup")
     modification = "No"
     
@@ -79,9 +80,9 @@ def processRequest(req):
     data['roomtype'] = roomtype
     data['mobile'] = mobile
     data['countrycode'] = countrycode
-    data['channel'] = "whatsapp"
+    data['channel'] = channel
     data['pickup'] = pickup
-    data['modification'] = "no"
+    data['modification'] = modification
     json_data = json.dumps(data)
     
     print("Request Parsed,Success...")
