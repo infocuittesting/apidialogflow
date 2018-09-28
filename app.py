@@ -53,7 +53,7 @@ def webhook():
 
 
 def processRequest(req):
-    if req.get("action") != "bookhotel":    
+    if req.get("action") != "bookhotels":    
         return {}
     
     result = req.get("result")
